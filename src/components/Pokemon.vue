@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <form class="form" action="https://pokeapi.co/api/v2/pokemon/" method="GET">
+    <form class="form">
       <p type="Id:"><input v-model="id" @keypress.enter="consumirAPI(this.id)" type="text" /></p>
 
       <p type="Name:"><input v-model="name" type="text" /></p>
@@ -26,7 +26,6 @@ export default {
         this.name = name;
         this.weight = weight;
         this.base = base_experience;
-        console.log(name);
     },
     construirURLAPI(id) {
       return "https://pokeapi.co/api/v2/pokemon/" + id;
@@ -59,6 +58,7 @@ p:before {
   margin: 5px 2px;
   font-size: 16px;
   color: #5a5a5a;
+  text-align: left;
 }
 
 input {
