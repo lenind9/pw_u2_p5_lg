@@ -19,8 +19,18 @@ export default {
 </script>
 
 <style>
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 img{
   width: 200px;
   height: 300px;
+}
+
+label{
+  font-weight: bold;
 }
 </style>

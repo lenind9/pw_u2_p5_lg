@@ -1,26 +1,33 @@
 <template>
   <!--<PokemonPage/>-->
-  <div class="container" v-if="mostrarJuego">
-    <h1>Casino Pokémon</h1>
-    <h2>Puntaje: {{ puntaje }}</h2>
-    <h2>Intento: {{ intento }}</h2>
-    <ImagenExamen :texto="texto1" :urlImg="url1" />
-    <ImagenExamen :texto="texto2" :urlImg="url2" />
-    <ImagenExamen :texto="texto3" :urlImg="url3" />
+  <div class="container">
+    <div v-if="mostrarJuego">
+      <h1>Casino Pokémon</h1>
+      <div class="puntaje_intentos">
+        <h2>Puntaje: {{ puntaje }}</h2>
+        <h2>Intento: {{ intento }}</h2>
+      </div>
 
-    <button @click="jugar">JUGAR</button>
-  </div>
+      <div class="imagenes_texto">
+        <ImagenExamen :texto="texto1" :urlImg="url1" />
+        <ImagenExamen :texto="texto2" :urlImg="url2" />
+        <ImagenExamen :texto="texto3" :urlImg="url3" />
+      </div>
 
-  <div v-if="mostrarPerdedor">
-    <h1>Has utilizado tus 5 intentos</h1>
-    <h1>El juego ha termindo, intentalo nuevamente</h1>
-    <button @click="reiniciar">Nuevo Juego</button>
-  </div>
+      <button @click="jugar">JUGAR</button>
+    </div>
 
-  <div v-if="mostrarGanador">
-    <h1>Puntaje: {{ puntaje }}</h1>
-    <h1>Felicitaciones has ganado un premio de $10.000,00</h1>
-    <button @click="reiniciar">Nuevo Juego</button>
+    <div v-if="mostrarPerdedor" class="perder">
+      <h1>Has utilizado tus 5 intentos</h1>
+      <h1>El juego ha termindo, intentalo nuevamente</h1>
+      <button @click="reiniciar">Nuevo Juego</button>
+    </div>
+
+    <div v-if="mostrarGanador" class="ganar">
+      <h1>Puntaje: {{ puntaje }}</h1>
+      <h1>Felicitaciones has ganado un premio de $10.000,00</h1>
+      <button @click="reiniciar">Nuevo Juego</button>
+    </div>
   </div>
 </template>
 
@@ -73,14 +80,22 @@ export default {
     },
     evaluarResultado() {
       this.intento++;
-      if (this.texto1 === "yes" && this.texto2 === "yes" && this.texto3 === "yes") {
+      if (
+        this.texto1 === "yes" &&
+        this.texto2 === "yes" &&
+        this.texto3 === "yes"
+      ) {
         this.puntaje += 5;
-      } else if ((this.texto1 === "yes" && this.texto2 === "yes") ||
+      } else if (
+        (this.texto1 === "yes" && this.texto2 === "yes") ||
         (this.texto2 === "yes" && this.texto3 === "yes") ||
         (this.texto1 === "yes" && this.texto3 === "yes")
       ) {
         this.puntaje += 2;
-      } else if (this.texto1 === "yes" || this.texto2 === "yes" || this.texto3 === "yes"
+      } else if (
+        this.texto1 === "yes" ||
+        this.texto2 === "yes" ||
+        this.texto3 === "yes"
       ) {
         this.puntaje += 1;
       }
@@ -131,13 +146,37 @@ export default {
   display: grid;
   justify-content: center;
   align-content: center;
-  grid-template-columns: repeat(4, 200px);
 }
-
-h1 {
-  grid-column: span 4;
+.puntaje_intentos{
+  display: grid;
+  grid-template-columns: repeat(2, 250px);
+  margin-left: 18%;
 }
-h2{
-  grid-column: span 2;
+.imagenes_texto {
+  display: grid;
+  grid-template-columns: repeat(3, 250px);
+  margin-bottom: 30px;
+}
+button {
+  width: 175px;
+  height: 40px;
+  padding-top: 10px;
+  padding-bottom: 30px;
+  border: 2px solid black;
+  cursor: pointer;
+  font-size: 20px;
+}
+button:hover {
+  background-color: #919191;
+  color: white;
+}
+.perder {
+  color: red;
+}
+.ganar {
+  color: blue;
+}
+.perder h1, .ganar h1{
+  margin-bottom: 50px;
 }
 </style>
