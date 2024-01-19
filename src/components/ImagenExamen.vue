@@ -1,7 +1,9 @@
 <template>
   <div class="container">
-    <img :src="urlImg" alt="No se puede visualizar" />
-    <label for="">{{texto}}</label>
+    <div class="img_lbl">
+      <img :src="urlImg" alt="No se puede visualizar" />
+      <label for="">{{ texto }}</label>
+    </div>
   </div>
 </template>
 
@@ -25,12 +27,17 @@ export default {
   align-items: center;
 }
 
-img{
-  width: 200px;
-  height: 300px;
+img {
+  width: 215px;
+  height: 215px;
+  margin-bottom: 20px;
+}
+.img_lbl {
+  display: grid;
 }
 
-label{
+label {
   font-weight: bold;
+  font-size: 20px;
 }
 </style>
