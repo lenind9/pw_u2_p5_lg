@@ -10,6 +10,16 @@
     />
     <PokemonOpciones @selecciono="revisarClick($event)" :pokemon="pokemonArr" />
   </div>
+
+  <div v-if="mostrarPerdedor" class="pierde">
+    <h1>PERDIÓ</h1>
+    <button @click="reiniciar">Juego Nuevo</button>
+  </div>
+
+  <div v-if="mostrarGanador" class="gana">
+    <h1>GANÓ</h1>
+    <button @click="reiniciar">Juego Nuevo</button>
+  </div>
 </template>
 
 <script>
@@ -60,12 +70,23 @@ export default {
     },
     revisarClick(datoRecibido) {
       console.log("Dio click y comunico desde el padre");
+      console.log(this.pokemonGanador.id);
       console.log(datoRecibido);
-      this.mostrarPokemon = true;
 
-      if(this.pokemonGanador.id === datoRecibido.id){
-        console.log("GANO")
+      if (this.pokemonGanador.id === datoRecibido) {
+        this.mostrarGanador = true;
+        this.mostrarPerdedor = false;
+      } else {
+        this.mostrarPerdedor = true;
+        this.mostrarGanador = false;
       }
+      this.mostrarPokemon = true;
+    },
+    reiniciar() {
+      this.mostrarPokemon = false;
+      this.mostrarPerdedor = false;
+      this.mostrarGanador = false;
+      this.cargaInicial();
     },
   },
   data() {
@@ -73,10 +94,18 @@ export default {
       pokemonArr: [],
       pokemonGanador: null,
       mostrarPokemon: false,
+      mostrarPerdedor: false,
+      mostrarGanador: false,
     };
   },
 };
 </script>
 
 <style>
+.gana{
+  color: blue;
+}
+.pierde{
+  color: red;
+}
 </style>
