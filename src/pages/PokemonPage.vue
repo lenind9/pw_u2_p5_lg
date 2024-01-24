@@ -13,12 +13,12 @@
 
   <div v-if="mostrarPerdedor" class="pierde">
     <h1>PERDIÓ</h1>
-    <button @click="reiniciar">Juego Nuevo</button>
+    <button @click="reiniciar">Reiniciar</button>
   </div>
 
   <div v-if="mostrarGanador" class="gana">
     <h1>GANÓ</h1>
-    <button @click="reiniciar">Juego Nuevo</button>
+    <button @click="reiniciar">Reiniciar</button>
   </div>
 </template>
 
@@ -107,5 +107,16 @@ export default {
 }
 .pierde{
   color: red;
+}
+button {
+  border-radius: 15%; 
+  background: rgb(51, 155, 157);
+  color: rgb(0, 44, 44);
+  font-weight: bold;
+}
+h1{
+  font-family: monospace;
+  font-size: 33px;
+  font-weight: bold;
 }
 </style>

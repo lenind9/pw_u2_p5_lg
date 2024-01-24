@@ -28,7 +28,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .ocultar {
   filter: brightness(0);
 }
